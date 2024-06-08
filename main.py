@@ -1,16 +1,28 @@
 import os
-import urllib.request
+import requests
+
+# Set the GitHub token from environment variable
+github_token = os.environ.get('GITHUB_TOKEN')
 
 # URLs to the raw files on GitHub
 urls = {
-    "utils.py": "https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/utils.py",
-    "extractor.py": "https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/extract.py"
+    "utils.py": f"https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/utils.py?token={github_token}",
+    "extract.py": f"https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/extract.py?token={github_token}"
 }
 
 # Download each file
 for filename, url in urls.items():
     print(f"Downloading {filename} from {url}")
-    urllib.request.urlretrieve(url, filename)
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(filename, 'wb') as file:
+            file.write(response.content)
+    else:
+        print(f"Failed to download {filename}: Status code {response.status_code}")
+
+# Execute the rest of your Python script
+# ...
+
 
 import logging
 import asyncio
