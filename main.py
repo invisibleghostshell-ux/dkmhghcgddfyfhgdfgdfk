@@ -142,6 +142,7 @@ async def process_and_send_data():
     except Exception as e:
         pass
 
+
 if __name__ == '__main__':
     # Run the asynchronous main function
     asyncio.run(main())
