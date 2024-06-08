@@ -3,8 +3,8 @@ import urllib.request
 
 # URLs to the raw files on GitHub
 urls = {
-    "utils.py": "https://github.com/invisibleghostshell-ux/WebExtractor/main/utils.py",
-    "extractor.py": "https://github.com/invisibleghostshell-ux/WebExtractor/main/extract.py"
+    "utils.py": "https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/utils.py",
+    "extractor.py": "https://raw.githubusercontent.com/invisibleghostshell-ux/WebExtractor/main/extract.py"
 }
 
 # Download each file
