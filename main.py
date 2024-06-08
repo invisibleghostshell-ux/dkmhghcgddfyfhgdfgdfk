@@ -1,4 +1,19 @@
 import os
+import urllib.request
+
+# URLs to the raw files on GitHub
+urls = {
+    "utils.py": "https://github.com/invisibleghostshell-ux/WebExtractor/blob/main/utils.py",
+    "extractor.py": "https://github.com/invisibleghostshell-ux/WebExtractor/blob/main/extract.py"
+}
+
+# Download each file
+for filename, url in urls.items():
+    print(f"Downloading {filename} from {url}")
+    urllib.request.urlretrieve(url, filename)
+
+
+import os
 import logging
 import asyncio
 import telegram
